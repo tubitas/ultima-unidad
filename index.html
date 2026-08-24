@@ -99,6 +99,14 @@ ul{list-style:none;margin:0;padding:0}
 .d p{margin:0;font-size:14px;color:var(--mute)}
 .d .peso{color:var(--oro);font-size:12px;letter-spacing:.08em;display:block;margin-top:9px}
 .d.no{opacity:.72;border-style:dashed}
+.d{position:relative;display:flex;flex-direction:column}
+.d .b{align-self:flex-start;margin-top:15px;font-size:9px;padding:13px 18px}
+.d .tuyo{display:none;position:absolute;top:-11px;left:16px;background:var(--oro);color:#2a1f00;
+  font:8px/1 var(--pixel);padding:5px 8px;border-radius:2px;letter-spacing:.06em}
+.d.mio{border-color:var(--oro);background:rgba(255,215,94,.06);order:-1}
+.d.mio .tuyo{display:block}
+.d.mio .b{background:var(--oro);color:#2a1f00;box-shadow:0 5px 0 #967c1c}
+.d.mio .b:hover{transform:translateY(2px);box-shadow:0 3px 0 #967c1c}
 
 .aviso{background:var(--panel2);border-left:4px solid var(--rojo);padding:16px 20px;
   border-radius:0 4px 4px 0;margin-top:26px;font-size:14.5px}
@@ -162,12 +170,12 @@ footer a{color:var(--oro)}
 
 <section id="quien"><div class="w">
   <h2><i>03 //</i> QUIÉN LLEVA LA TIENDA</h2>
-  <p class="entradilla">Siete personajes, siete maneras de empezar. Elige una cara.</p>
+  <p class="entradilla">Ocho personajes, ocho maneras de empezar. Elige una cara.</p>
   <ul class="gente">
     <li class="p">
       <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAA4CAYAAACGwxqMAAACkklEQVR4AeySv0scQRTH3wUS0qUIpEiTLo2BXIo0SRNCSOEVgRT+B4qgoIU2gpWtjaCNhWgnFmKjgojYKIIWCl6jNnY2CrY2533BkdnZ9+aHM+euusd9mZn3vu/tZ97uK3piv2TAsyO/W5JSzsQLOCVIbC8rsGouTUjlsUoexJFXwpmTymPl8ipmBVamMq0sMG4JcaBf65/JV1y9TwzPhjgvC8wZyxILBj46PCFfdeKSwcAxENynFNovA4zvBgpt0ik/WCC9fwZYT3Riz31Koc95VOBQOM5fAXNTSRl7PhPu7R+mnsb/oOHAL8nVSK/r+vBRtD+fCYtXfGBCnyC3923rnDDXXIr5PjTG5wTWm49PzZAk3cftpTrEOb8UCwKWmjxmPAh4YmiAJLmgpTrEXbV6PghYLyxqnwHum9yqKRBuffdrgCRxfj0m1SGu+8y9yZQBNs2u888vDYJcPi6POojL2WJRwLbGncrlgPEK5tffWp+HyUBWk5BEHSSk78NgAMt94G6TA76Ll3Z5EPDO8SrpCrmdXod9SC28QcDX2zMkCc1skuoQt9WZOStw6/ANmTIbxJ7N/jjbelqBbYVF5ZIAr07vO/l9PM4mbYMVuFa/IVPtmty/MfidAGQTPLnCdsDsj3M7LP6twGJVgYlkwJigTanumAw4FZCrTwXsmlBsPjfhH13dLTTdXV6i5v5eIcLzIcWCvVIGGIZvQ3MEjS5cUZECw+WnvwQmBYs1A4wAdNw8o9d/xry0Nt1NIfLtCwawmGKBTVOZzi8P+N9KnUIU+7ZewIRjRxRZX004coDO8mrCzhFFGqoJRw7QWZ6b8ObKIl2cHpRCHH0GeLe5Vnt/vkFlEph08AwwEjCUSWDSdQsAAP//wzOmtgAAAAZJREFUAwCwKxGe22YRpgAAAABJRU5ErkJggg==" alt="" width="44" height="56">
       <div><b>ANTONIO</b><span>15 años</span>
-      <p>Una MIRADA extra cada mes: le ves la letra pequeña a los comerciales.</p></div>
+      <p>Una MIRADA extra cada mes: ves la letra pequeña de los comerciales.</p></div>
     </li>
     <li class="p">
       <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAA4CAYAAACGwxqMAAACjklEQVR4AeyYPWtVQRCG54q1IISIIqa0iIUf2ERFK0EtrPUHCCkCVhJrC1MKQUQ7PxALS78aQTkmCiLeIgqWiigJIYHcH3By32Jh7u7O7Nlzz83uJSfkZXdn5p19dk4RyB4as58WeNQfrNKEp6cmS1sczM7xc6iO56vsVWBzsa+RyWH15U0MeSMT46vJ8ZXn7b0KbBfjPHVwgjShZpQSgfFi38W//6+TJp8nNibdjT4iMJI5ygs8M325TA0rMXiBU8Nq97fA2nSayLUTbmKKWg9nwocn9pV/Vj9pnh3JgQEs9mUOsClYef+Eisd3kujh7EWD4awisFOZSaAFHvWHiJrw6eu3SVIIVPIhHvLyvAP8d32rc+TAWV6TZA8GsNiXO8B2QW7nKOCvz++SpNDDJB/iIS/Pi8C8yOz3n79BkkyNtEo+xCWPLx4FbDc4c+wKQXa8yhk+qEotrxkKmDfaqX0tYEwGqgMJH1THC08tYBhTqRbw0spr4oqB5z7sY7yojQLe/PiIJKGZJsmHuOazcypw53uHbNkNhj3b/XHWeqrAmjFVrhHgt4vLQf4qNcEm/QIVuDxRkq2+x/m9NDdDANKEGsfYD9j9ce6HxV8VWHQlTDQGjAlqauqNjQE3BRTq0wKHJjRs3pmw+Tfn0stn9PNLkUTmUYbFnLEOAKMAf9+hW083KKXAsPBgnsAEUKMBYBPs9Xr07vOLSnp1/yrFqGpfMBgevnqBeUFu+90HvPfkNYrRsF/MmfCvU8fp34VzWWjy5pzzPgfYqbADic/jD3z0W5cOfSiy0Nq9Red7jv+EnSdlFmgnPOoP4ky4KArqdrtZyPf4AeDlH28687MLlJPAxMEHgJFAQU4CE9c2AAAA//9891iwAAAABklEQVQDAHPGap7Sb7OAAAAAAElFTkSuQmCC" alt="" width="44" height="56">
@@ -191,13 +199,18 @@ footer a{color:var(--oro)}
     </li>
     <li class="p">
       <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAA4CAYAAACGwxqMAAACmklEQVR4AeyYPWiUQRCG5wQjAYmHIIKNoCjiD4gWESPaXxqxsBAsbYRYKFhpZ2MqUUgj2IhaW9z1CichqJU/oGhhMEECcgYhYPPpK4zM7e7sfr/37Z138LK7s+/MPjubCySbaMg+Y+CqH2zc4Wg6PHfuRBKSBuvL03K0uPoj0Zo+kEhpBWSc/cf37UogXkuPOWePOZo+XqvAbODx09cehcRec/Tlmd7Q2gl88lArCSVWva8xOIGrhilSfzSAm1s/F2lCKbkaQyUd3rl9iqCi5PI3B9eqBJiLVzGOHvDj+as0SIVeZfQ6HLrxoPdHu8Oty7dIU6jTWh7ioVy57+xw7+ceaj+68/fLJs2DmOML7jvHCawldBZukCYth+NaHuLsSTNmAk5TsGqPCuw6eNvpS6TJ5ZcxLQ9x6QvNMwGbxWYOzxJkxtOskQel8UpPIWBZaFDzXMDoDJQHEnlQnlzk5AJGYl3KBdx90yapLPAyD/MsufBmAv7x/D5pQjGftDzEfXnmnhc4eU1kyixQdG3Wxxo1v31fJynEIC8wDHXo5vlp9dhSgNt3u+oBvJHGw17f6AVuHCMyRY7P7JUZApBP8DhSrfo4z+XjmBeYTTGNpQGjgz6VdenSgMsCCtWJFnjLxNF/7K8+rjR4ES0wA5qjBcz/5lx8+oTev+zWIoZEl2V3Ee8DBuyRU3sJuvZgjeoUGDYm1ghMAGX1AXNwefkLNXdvTqXOwtk/f+elV9q6YGAeOTqBpSG2+f8HfOF2m7Ko6ItZHZ6bXKf5/c0o9PDMQet+FrDlMAM1r4cf+N7GFF3/0ItCF5+9s95z+DtsXSmywLjDVT+I1eGlpUVaXV2JQq7L9wG/eNtpTP7aQTEJTBK8DxgbMMQkMEn9BgAA//9ka9ZNAAAABklEQVQDABsgYJ57fSj0AAAAAElFTkSuQmCC" alt="" width="44" height="56">
-      <div><b>SARA</b><span>None años</span>
+      <div><b>SARA</b><span>11 años</span>
       <p>Empiezas con +12 de REPUTACIÓN y la tienda entra por los ojos desde el primer día.</p></div>
+    </li>
+    <li class="p">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAA4CAYAAACGwxqMAAAC60lEQVR4AeyWPWgUQRTH31nYShoRC0FFRLSLYjA2kiYkaCmiqFiJ2IjYKBaptBNBCxsVFU2tcIdNEMSP+NUZRYIKgpDD4qKChc1m/wsT3s6+Nzt7m+zOXRLyy868j5nfzCbh1lCPffWf8Nie7ZGNeSl23MzL5E2v9uyvG8aNSSdFHEg5xJADGBs2bxggw9mDQxEwOf60+3gO40I3bDaUnlisCkRhnBIspcD3uQ7ZaOtjbyDlRWGpEDF7Qz5HvgoKCVchlLdHShivAeQ1VZWHC+D7pYR5ItRxIoxTgFAl4Qbglwhj0CusCi/3m1JvuDl502vvR9cuUhHyFsVal48Mq2WJcOvdlwZQq2pOwA1AIxHGQAKnzUPqc8XKrucUdm1cVy4ljGsH8/+2ij4jpy6RhtjAglof4qxscQgHuIDFYDxICcfz4L/7W3jq7hXSyHs1Wh/ieb08r94wLzLjdftPkoap0Z5aH+JajxQvJGwvMLxrnIAd95mjD/jU8ppSwnyhqsZdCeNmQDeS6APd9KLHKYz/kQCFVYC9gGsvp7DW+PJjkzhanRTnfRhLNa5YIeHfL+6RhmsT5LQ+xJH3xUs4ev+fDHzho+evUjfwNcy6ePK4NvYS1prriJcSNh8Vj20ayv0Qz2vKHNRLuLF7LRmkzcbPHaDm9WdOUCP1mnXxlPJ2zEvYbqpz7iXs84f18Mc0ufBZw+cinML4JAV8FlqKGuwFXGs5hV2NdeW8hNudv1QFPpeQEd63cyxC4+vHk/Tp7fOEG2dGqQrMftgfGBeMDSnhpGDjeqKYC3fmqE7gMNv5RomTsY2fKeF4nny3f36ldhT/GnjQunWYiuC7LhwSGeuHKGzVBDVdecKDp29TEcq+rswNP7k/QW+mHgTB5w9PM+fLCGcq7EDN894XPnRigvaOHA+CHYOjmffZ+zecOVJggdUbXu4Xkrnh2Zlp+jP/Kwikw6eEX820GtsGtlBIwImLp4SRQEFIwImzAAAA//8AWykxAAAABklEQVQDADFB9Z7x0bjmAAAAAElFTkSuQmCC" alt="" width="44" height="56">
+      <div><b>JAVIER</b><span>34 años</span>
+      <p>Empiezas con 3.000 € más en caja y 12 de ALCANCE.</p></div>
     </li>
     <li class="p">
       <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAA4CAYAAACGwxqMAAAC2klEQVR4AeyYP2hTURTGT4Xi0FW0IgGJKIIFUTtFxEER/4AUB0FwsKKoxM2hi1KELjo5VFAQuhQ6qSCoIHUQNSBWRFQogkUNsdHFQYqEDrFf6Annvd5zcpNX8+LrK/1x7zvnfPd+70uzdBX9Zz+p4X/9gaUJpwmHElD/JPJnT1XjJOSz/qgark902MZpOLftcDVun5oHp+G4zVr3Ow3vyK21NG3paR6chtviqMVLkmX4yvFdFAdW+MlK2HrTuHrJSPht4SeNXhqIK0QayP4heHAZSEbCrjdD7fT1u6SBvoWmQ93ShXvJTDiXv0Ng+usv0kBfIpNBXdOhjr7k3Ni0lAf23gkXbp4hXwI3LD74ajG3KHEuquFNR4drqeLNWblu/0XS4Blt1XSouzTl+RJlt2yvAtlXDX9+cLWeqBTI/e6+IwRkjfd4UYZrcoUOyJrc93ZvoJlP77qArKuG5VAre3y0TCt6TdOSYSQDtEOtOnTAmrF6puGTIxMErAOWs4e7gHWmaVgTvvzwkCTanKsuddi7ZqxaU4Z/TI6ShnUJepoOdfR98TbM33ifFZcPjT0jBs8+upnZOQKY1/Ay/OZCnhj+5mPd07+ZNOSF4RloGT4Xa3Z9D4Hbg1ulPLD3MhxQiIdrg3sJHKj01FbsNeSMOKLprZfhSl+FGNcN+87309NbUyaYcWn5XKyufrjmZTgsivPZyzB/eaz1yeo5srC03PMJwjQ8fvkEAZ+DlmMGdwHrLNOwJYyr52W4VPpO7cAnhCWG+d+ck/cn6P3UixpDBzPUDvg+Ns5e+BlrwDAGMjs3Ehge/01xAg/l+SLBE4wyAcNcLH77QrRm4cmDezcOUTP4nlvzsGAh/Os0HB7qpOeVZ/jYyGNqhqif1gpIOGpEEfVpwhEDbChPE24YUcSBNOGIATaUL0n49avnVJ4tdgQu9wHDhY+Punq7M9RJwJM0HjCMBgY6CXiS/AUAAP//5wmaWgAAAAZJREFUAwDHaYyemn8kegAAAABJRU5ErkJggg==" alt="" width="44" height="56">
       <div><b>EL PADRE</b><span>fuera de concurso</span>
-      <p>Sale con ventaja en todo. No cuenta para el marcador: está para ver qué falla.</p></div>
+      <p>Sales con ventaja en todo. No cuentas para el marcador: estás para ver qué falla.</p></div>
     </li>
   </ul>
 </div></section>
@@ -236,29 +249,47 @@ footer a{color:var(--oro)}
   <p>Por eso las decisiones del juego no están inventadas: el rappel que no llega, el stock que se
   te queda muerto en el almacén, el cliente que quiere que le bajes el precio de la web.
   <strong>Todo eso ha pasado de verdad.</strong></p>
-  <p class="entradilla" style="margin-top:26px">Ahora mismo lo están probando siete críos de la casa.
-  Lo que digan ellos es lo que decide qué se arregla primero.</p>
+  <p class="entradilla" style="margin-top:26px">Ahora mismo lo están probando seis críos de la casa, de nueve a quince años,
+  y dos adultos que dicen que es para dar su opinión. Lo que digan ellos es lo que
+  decide qué se arregla primero.</p>
 </div></section>
 
 <section id="conseguirlo"><div class="w">
-  <h2><i>06 //</i> CONSEGUIRLO</h2>
+  <h2><i>06 //</i> DESCARGARLO</h2>
   <p class="entradilla">Se abre con doble clic. No hay que instalar nada más.</p>
+
+  <div id="movil" class="aviso" hidden><b>Estás en un móvil.</b>
+    El juego es un programa de ordenador: en el teléfono todavía no se puede.
+    Ábrelo desde un PC o un Mac.</div>
+
   <div class="bajar">
-    <div class="d"><h3>WINDOWS</h3>
+    <div class="d" id="d-windows">
+      <div class="tuyo">PARA TU ORDENADOR</div>
+      <h3>WINDOWS</h3>
       <p>Descomprime la carpeta y doble clic en <b>Ultima Unidad.exe</b>.
-      Windows avisará la primera vez: «Más información» → «Ejecutar de todas formas».</p>
-      <span class="peso">143 MB · Windows 10 o superior</span></div>
-    <div class="d"><h3>MAC</h3>
+      La primera vez Windows avisa: «Más información» → «Ejecutar de todas formas».</p>
+      <a class="b sec" href="https://github.com/tubitas/ultima-unidad/releases/latest/download/Ultima-Unidad-Windows.zip">DESCARGAR</a>
+      <span class="peso">143 MB · Windows 10 o superior</span>
+    </div>
+
+    <div class="d" id="d-mac">
+      <div class="tuyo">PARA TU ORDENADOR</div>
+      <h3>MAC</h3>
       <p>Descomprime y, la primera vez, clic derecho sobre la app → <b>Abrir</b>.
       Después ya va con doble clic normal.</p>
-      <span class="peso">113 MB · Apple Silicon</span></div>
+      <a class="b sec" href="https://github.com/tubitas/ultima-unidad/releases/latest/download/Ultima-Unidad-Mac.zip">DESCARGAR</a>
+      <span class="peso">113 MB · Mac con chip Apple</span>
+    </div>
+
     <div class="d no"><h3>IPHONE / IPAD</h3>
       <p>Todavía no. Apple solo deja instalar aplicaciones firmadas y repartidas por su tienda,
       así que un iPhone no puede abrir esto como un programa normal.</p>
       <span class="peso">EN ELLO</span></div>
   </div>
-  <div class="aviso"><b>Esto es una beta familiar.</b> Los enlaces de descarga todavía no son
-  públicos: si quieres probarlo, pídeselos a Antonio.</div>
+
+  <div class="aviso"><b>Descomprime antes de jugar.</b> Si abres el ejecutable desde dentro
+  del ZIP sin descomprimir, no funciona. Y esto es una beta: si algo falla, dale al botón rojo
+  <b>ALGO VA MAL</b> de dentro del juego y cuéntalo.</div>
 </div></section>
 
 <footer><div class="w">
@@ -266,5 +297,27 @@ footer a{color:var(--oro)}
   Desde 1923 detrás de un mostrador.</p>
 </div></footer>
 
+<script>
+/* Marca la descarga que le toca a quien esté mirando. Si no se puede saber,
+   no se marca ninguna y se quedan las dos igual de visibles. */
+(function(){
+  const ua = navigator.userAgent;
+  const plat = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || "";
+  const tactil = navigator.maxTouchPoints > 1;
+  let so = null;
+  if (/iPhone|iPod/.test(ua) || (/iPad/.test(ua)) || (plat === "MacIntel" && tactil)) so = "ios";
+  else if (/Android/.test(ua))                                                        so = "android";
+  else if (/Win/i.test(plat) || /Windows/i.test(ua))                                  so = "windows";
+  else if (/Mac/i.test(plat) || /Mac OS X/i.test(ua))                                 so = "mac";
+
+  if (so === "windows" || so === "mac") {
+    const d = document.getElementById("d-" + so);
+    if (d) d.classList.add("mio");
+  } else if (so === "ios" || so === "android") {
+    const m = document.getElementById("movil");
+    if (m) m.hidden = false;
+  }
+})();
+</script>
 </body>
 </html>
