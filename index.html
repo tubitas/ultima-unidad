@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Última Unidad — llevas una tienda y el objetivo es seguir abierto</title>
+<meta name="description" content="Aventura de decisiones en pixel art: llevas una tienda de barrio en la comarca del Almanzora. Compras género, aguantas el mes y llegas a la foto de fin de año. Hecho en Albox.">
+<meta property="og:title" content="Última Unidad">
+<meta property="og:description" content="Llevas una tienda. El objetivo es seguir abierto.">
+<meta property="og:image" content="img/gestion.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fondo:#0d1533; --panel:#1b2a5c; --panel2:#26386f; --linea:#5476c4;
+  --oro:#ffd75e; --texto:#dbe4ff; --mute:#8ea0d8; --rojo:#e0574f; --verde:#6ecf78;
+  --pixel:'Press Start 2P',ui-monospace,monospace;
+  --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--fondo);color:var(--texto);font:16px/1.7 var(--mono);
+     letter-spacing:.01em;overflow-x:hidden}
+/* el velo de tubo de rayos catódicos */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:99;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.16) 0 1px,transparent 1px 3px);
+  mix-blend-mode:multiply}
+.w{max-width:940px;margin:0 auto;padding:0 20px}
+
+/* ---------- portada ---------- */
+header{padding:72px 0 40px;text-align:center;position:relative;overflow:hidden}
+header::before{content:"";position:absolute;inset:-40% -10% auto;height:520px;
+  background:radial-gradient(ellipse at 50% 0%,rgba(84,118,196,.36),transparent 62%)}
+h1{font:28px/1.5 var(--pixel);color:var(--oro);margin:0 0 18px;position:relative;
+   text-shadow:0 4px 0 #7a5f14, 0 5px 0 rgba(0,0,0,.4)}
+.lema{font-size:19px;color:var(--texto);margin:0 auto 6px;max-width:560px;position:relative}
+.lema b{color:var(--oro);font-weight:600}
+.cursor{display:inline-block;width:9px;height:19px;background:var(--oro);
+  vertical-align:-3px;animation:parpadeo 1.1s steps(1) infinite}
+@keyframes parpadeo{50%{opacity:0}}
+.sello{font:9px/1.8 var(--pixel);color:var(--mute);letter-spacing:.1em;margin-top:20px;position:relative}
+
+.pantalla{margin:38px auto 0;max-width:880px;position:relative;
+  border:3px solid var(--linea);border-radius:5px;overflow:hidden;
+  box-shadow:0 0 0 5px #0a1029, 0 22px 60px rgba(0,0,0,.6)}
+.pantalla img{display:block;width:100%;image-rendering:pixelated}
+
+.botones{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:34px 0 0;position:relative}
+.b{font:10px/1 var(--pixel);text-decoration:none;padding:16px 22px;border-radius:3px;
+   background:var(--oro);color:#2a1f00;box-shadow:0 5px 0 #967c1c;transition:.08s;letter-spacing:.04em}
+.b:hover{transform:translateY(2px);box-shadow:0 3px 0 #967c1c}
+.b:active{transform:translateY(5px);box-shadow:0 0 0 #967c1c}
+.b.sec{background:var(--panel2);color:var(--texto);box-shadow:0 5px 0 #16214a}
+.b.sec:hover{box-shadow:0 3px 0 #16214a}
+
+/* ---------- secciones ---------- */
+section{padding:64px 0;border-top:1px solid #22315f}
+h2{font:14px/1.6 var(--pixel);color:var(--oro);margin:0 0 8px;letter-spacing:.02em}
+h2 i{color:var(--linea);font-style:normal}
+.entradilla{color:var(--mute);margin:0 0 30px;font-size:15px}
+p{margin:0 0 17px;max-width:70ch}
+p.grande{font-size:18px;color:var(--texto)}
+strong{color:var(--oro);font-weight:600}
+ul{list-style:none;margin:0;padding:0}
+
+/* pasos */
+.pasos{display:grid;gap:14px}
+.paso{display:flex;gap:18px;background:var(--panel);border:1px solid #33477f;
+      border-left:4px solid var(--oro);border-radius:4px;padding:18px 20px}
+.paso .n{font:16px/1 var(--pixel);color:var(--oro);flex:none;padding-top:3px;width:34px}
+.paso b{display:block;margin-bottom:5px;letter-spacing:.04em}
+.paso span{color:var(--mute);font-size:15px}
+
+/* personajes */
+.gente{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.p{display:flex;gap:15px;background:var(--panel);border:1px solid #33477f;border-radius:4px;padding:14px 16px}
+.p img{image-rendering:pixelated;flex:none}
+.p b{display:block;letter-spacing:.08em;color:var(--texto)}
+.p>div>span{color:var(--oro);font-size:12px;letter-spacing:.05em}
+.p p{margin:7px 0 0;font-size:13.5px;color:var(--mute);line-height:1.55}
+
+/* placas */
+.ligas{display:grid;gap:14px}
+.liga{background:var(--panel);border:1px solid #33477f;border-radius:4px;padding:20px 22px}
+.liga.leg{border-color:var(--oro);border-style:dashed;background:rgba(255,215,94,.05)}
+.liga h3{font:11px/1.6 var(--pixel);color:var(--oro);margin:0 0 9px;letter-spacing:.03em}
+.liga p{margin:0;color:var(--mute);font-size:15px}
+.liga .ej{margin-top:12px;display:flex;flex-wrap:wrap;gap:7px}
+.liga .ej span{font-size:11px;letter-spacing:.12em;color:var(--texto);
+  background:var(--panel2);border:1px solid #3d5290;border-radius:3px;padding:5px 9px}
+.liga.leg .ej span{border-color:#6a5a2a;color:var(--oro);background:rgba(255,215,94,.08)}
+.liga.leg .ej span.q{color:#6b7ba8;border-color:#3d5290;background:transparent}
+
+/* descargas */
+.bajar{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:6px}
+.d{background:var(--panel);border:1px solid #33477f;border-radius:4px;padding:20px}
+.d h3{font:11px/1.5 var(--pixel);color:var(--texto);margin:0 0 10px}
+.d p{margin:0;font-size:14px;color:var(--mute)}
+.d .peso{color:var(--oro);font-size:12px;letter-spacing:.08em;display:block;margin-top:9px}
+.d.no{opacity:.72;border-style:dashed}
+
+.aviso{background:var(--panel2);border-left:4px solid var(--rojo);padding:16px 20px;
+  border-radius:0 4px 4px 0;margin-top:26px;font-size:14.5px}
+.aviso b{color:var(--rojo)}
+
+footer{padding:46px 0 70px;border-top:1px solid #22315f;color:var(--mute);font-size:13px;text-align:center}
+footer a{color:var(--oro)}
+@media(max-width:620px){
+  h1{font-size:18px}
+  h2{font-size:11px}
+  header{padding:46px 0 30px}
+  .lema{font-size:16px}
+  .paso{padding:14px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="w">
+    <h1>ÚLTIMA UNIDAD</h1>
+    <p class="lema">Llevas una tienda.<br>El objetivo es <b>seguir abierto</b>.<span class="cursor"></span></p>
+    <p class="sello">AVENTURA DE DECISIONES · PIXEL ART · HECHO EN ALBOX</p>
+    <div class="pantalla"><img src="img/gestion.png" alt="Una tienda de juguetes y electrodomésticos en pixel art, con el toldo a rayas, las estanterías con género y tres clientes en el mostrador."></div>
+    <div class="botones">
+      <a class="b" href="#conseguirlo">JUGAR</a>
+      <a class="b sec" href="https://tubitas.github.io/uu-marcador/?k=uu-c812803f27">EL MARCADOR</a>
+    </div>
+  </div>
+</header>
+
+<section id="que-es"><div class="w">
+  <h2><i>01 //</i> QUÉ ES ESTO</h2>
+  <p class="entradilla">No es un juego de hacerse rico. Es un juego de aguantar.</p>
+  <p class="grande">Abres una tienda en un pueblo del Valle del Almanzora y tienes que llegar viva
+  a la foto del 31 de diciembre. Eliges el ramo —juguetes, electrodomésticos, papelería—, compras
+  género, contratas gente y todos los meses te pasa algo: un proveedor que te deja tirado, una
+  inspección, un cliente que quiere devolver algo que compró hace un año.</p>
+  <p><strong>No hay respuestas correctas.</strong> Hay decisiones que te salen bien y decisiones que
+  te salen caras, y casi nunca sabes cuál era cuál hasta que cierras el mes. Si aguantas el año,
+  empieza otro. Y el segundo ya no perdona como el primero.</p>
+  <p>Las partidas duran entre ocho y once años. <strong>La mitad acaban en quiebra.</strong></p>
+</div></section>
+
+<section id="como"><div class="w">
+  <h2><i>02 //</i> CÓMO SE JUEGA</h2>
+  <p class="entradilla">Un mes, cuatro movimientos, y vuelta a empezar doce veces.</p>
+  <ul class="pasos">
+    <li class="paso"><span class="n">1</span><div><b>ELIGES LA TIENDA</b>
+      <span>Clicas un escaparate y decides de qué va a ser. Cada ramo tiene su dificultad: la papelería es la más difícil con diferencia.</span></div></li>
+    <li class="paso"><span class="n">2</span><div><b>PRIMERO DE MES</b>
+      <span>Tienes unos movimientos antes de subir la persiana. Lo más importante es comprar género: sin nada en las estanterías no se vende nada.</span></div></li>
+    <li class="paso"><span class="n">3</span><div><b>SUCEDE ALGO</b>
+      <span>Y hay que decidir. Contratar o no. Firmar o no. Fiarse del comercial o leerle la letra pequeña.</span></div></li>
+    <li class="paso"><span class="n">4</span><div><b>CIERRE DE MES</b>
+      <span>Se cuentan las ventas, las nóminas, los fijos y las cuotas. Si la caja se te queda en rojo, se acabó.</span></div></li>
+    <li class="paso"><span class="n">★</span><div><b>LA FOTO DE FIN DE AÑO</b>
+      <span>El 31 de diciembre se hace la foto de la puerta. Ganar es que salga llena de gente. Y luego, otro año.</span></div></li>
+  </ul>
+</div></section>
+
+<section id="quien"><div class="w">
+  <h2><i>03 //</i> QUIÉN LLEVA LA TIENDA</h2>
+  <p class="entradilla">Siete personajes, siete maneras de empezar. Elige una cara.</p>
+  <ul class="gente">
+    <li class="p">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAA4CAYAAACGwxqMAAACkklEQVR4AeySv0scQRTH3wUS0qUIpEiTLo2BXIo0SRNCSOEVgRT+B4qgoIU2gpWtjaCNhWgnFmKjgojYKIIWCl6jNnY2CrY2533BkdnZ9+aHM+euusd9mZn3vu/tZ97uK3piv2TAsyO/W5JSzsQLOCVIbC8rsGouTUjlsUoexJFXwpmTymPl8ipmBVamMq0sMG4JcaBf65/JV1y9TwzPhjgvC8wZyxILBj46PCFfdeKSwcAxENynFNovA4zvBgpt0ik/WCC9fwZYT3Riz31Koc95VOBQOM5fAXNTSRl7PhPu7R+mnsb/oOHAL8nVSK/r+vBRtD+fCYtXfGBCnyC3923rnDDXXIr5PjTG5wTWm49PzZAk3cftpTrEOb8UCwKWmjxmPAh4YmiAJLmgpTrEXbV6PghYLyxqnwHum9yqKRBuffdrgCRxfj0m1SGu+8y9yZQBNs2u888vDYJcPi6POojL2WJRwLbGncrlgPEK5tffWp+HyUBWk5BEHSSk78NgAMt94G6TA76Ll3Z5EPDO8SrpCrmdXod9SC28QcDX2zMkCc1skuoQt9WZOStw6/ANmTIbxJ7N/jjbelqBbYVF5ZIAr07vO/l9PM4mbYMVuFa/IVPtmty/MfidAGQTPLnCdsDsj3M7LP6twGJVgYlkwJigTanumAw4FZCrTwXsmlBsPjfhH13dLTTdXV6i5v5eIcLzIcWCvVIGGIZvQ3MEjS5cUZECw+WnvwQmBYs1A4wAdNw8o9d/xry0Nt1NIfLtCwawmGKBTVOZzi8P+N9KnUIU+7ZewIRjRxRZX004coDO8mrCzhFFGqoJRw7QWZ6b8ObKIl2cHpRCHH0GeLe5Vnt/vkFlEph08AwwEjCUSWDSdQsAAP//wzOmtgAAAAZJREFUAwCwKxGe22YRpgAAAABJRU5ErkJggg==" alt="" width="44" height="56">
+      <div><b>ANTONIO</b><span>15 años</span>
+      <p>Una MIRADA extra cada mes: le ves la letra pequeña a los comerciales.</p></div>
+    </li>
+    <li class="p">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAA4CAYAAACGwxqMAAACjklEQVR4AeyYPWtVQRCG54q1IISIIqa0iIUf2ERFK0EtrPUHCCkCVhJrC1MKQUQ7PxALS78aQTkmCiLeIgqWiigJIYHcH3By32Jh7u7O7Nlzz83uJSfkZXdn5p19dk4RyB4as58WeNQfrNKEp6cmS1sczM7xc6iO56vsVWBzsa+RyWH15U0MeSMT46vJ8ZXn7b0KbBfjPHVwgjShZpQSgfFi38W//6+TJp8nNibdjT4iMJI5ygs8M325TA0rMXiBU8Nq97fA2nSayLUTbmKKWg9nwocn9pV/Vj9pnh3JgQEs9mUOsClYef+Eisd3kujh7EWD4awisFOZSaAFHvWHiJrw6eu3SVIIVPIhHvLyvAP8d32rc+TAWV6TZA8GsNiXO8B2QW7nKOCvz++SpNDDJB/iIS/Pi8C8yOz3n79BkkyNtEo+xCWPLx4FbDc4c+wKQXa8yhk+qEotrxkKmDfaqX0tYEwGqgMJH1THC08tYBhTqRbw0spr4oqB5z7sY7yojQLe/PiIJKGZJsmHuOazcypw53uHbNkNhj3b/XHWeqrAmjFVrhHgt4vLQf4qNcEm/QIVuDxRkq2+x/m9NDdDANKEGsfYD9j9ce6HxV8VWHQlTDQGjAlqauqNjQE3BRTq0wKHJjRs3pmw+Tfn0stn9PNLkUTmUYbFnLEOAKMAf9+hW083KKXAsPBgnsAEUKMBYBPs9Xr07vOLSnp1/yrFqGpfMBgevnqBeUFu+90HvPfkNYrRsF/MmfCvU8fp34VzWWjy5pzzPgfYqbADic/jD3z0W5cOfSiy0Nq9Red7jv+EnSdlFmgnPOoP4ky4KArqdrtZyPf4AeDlH28687MLlJPAxMEHgJFAQU4CE9c2AAAA//9891iwAAAABklEQVQDAHPGap7Sb7OAAAAAAElFTkSuQmCC" alt="" width="44" height="56">
+      <div><b>JAVIER JUSTO</b><span>14 años</span>
+      <p>Empiezas con 4.000 € más en caja.</p></div>
+    </li>
+    <li class="p">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAA4CAYAAACGwxqMAAACnklEQVR4AeyRPWgUURDHJwEhnYWQXhBBTGFloYKWomKR1oCCnVpaWipaKmhlp6fBJkhQsRG0uDQiKih+FIqIhUELu3Tn/g5emH33Pvbd28tukg33z86bmf+8385Oyyb723rAC0f3DmyZj2LnzTmnbry+59baMBtzvSl55KqRo4aIjfbtnhWja+eODJCp6aft0zXiaf5VlbnQ9aw6I7fPCcxbotzh2v/p+6rY0nUdczfSORM7gU3RftoX6rPdO6lzEvCkIFLmloD5DChlwCR7YUH6jhKwLrQ1HgLzFqitkLAh+IbABJtFHfCkv5R3w/cfPah0992b1yVFsaHMunzmlLdtCNx79XUKebsaLsCGwBgCE7jE28bk8oVyufOCwKGLm6qVgFk7+vZnj5Pn+MJF8clpUEmfj7xqWw9hgAWtJ4ugBFycW/9LAn7euyM+xd7U5yMf8+p6ErA2NhV7gV1AMwfmxSdXv875fOR1XyxOAraHHZ47KcjOVznjQ1V6dU8WsB60UfFYwGwGjQOJD43jxTMWMMamNBZw/8NT0UqB1z7iFC+9ScBr75bEJ4aF5PORD/nsWhB47eVfsWUPyD3b8zmHZgaBQ8amarUAL11djvJX6YkOKRqCwDPHdomtwjPym79yWgAKiZ4RY5Gw53Mu0t5fENjrarBQGzAbDKmud6wNuC6g2JwOOLah3PrIhg/tPzFg6PvlRfnyut+IuB8ZFmKjEjAN/bMHBV249VmaFAyXdq4KTAaWZwmYBPrx5q08nNtRSS965yVFVefCAIstJ7Dd1Kbz9gP+feOepCj3a22DDeeuKNPfbThzgVF7t+HoijIbug1nLjBqH9nw4uMnsvLzVyvkoi8Br3x8NnX736y0STBp8BIwBRraJJi0/gMAAP//oaavxwAAAAZJREFUAwCYUyGeO0SZbAAAAABJRU5ErkJggg==" alt="" width="44" height="56">
+      <div><b>JAVI</b><span>13 años</span>
+      <p>Empiezas con 25 de ALCANCE: ya te conoce media comarca.</p></div>
+    </li>
+    <li class="p">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAA4CAYAAACGwxqMAAACoElEQVR4AeySO0hcQRSGj8JCIEXKNCGQkBQhBqwiJqQI6ZLitmlS2aQNkQSEFBKSShuxEOx8tIqCIoIgiIoWWvgCEQVRELFREIQtdP9iYHZmzjzu3t071wf7c2fO/Oe/35xrMxXs7x643h/MOeGupOWakwzHeURdeMVefYpz15MFFoG2AOHB0+bDGTwQ1ibhTJbJgxoLjMMYZQTGTW2wr549IZds/T5nHIMR2CcwL08q4J2DI3KpXhdKBVwvGJ/c4gNz/+w+t8/aY2Ip/oSznlLWebdnwv/6+qnr96/UA0Iv5BMAn6zkYzvbdnsmzF4x8ECeHLcOiXROmHuJqx4CEeJ1Asth3zv/ECfZZ1pzfaib/FxNA/4/sdk0v/eU8zesDgawqC/UgFWDvB/o+UucZJ9pzfWhbvJztSBgLqSRdRbYBPGw/RtxMvnlGteHuuxzrYOA1bD3LV8IUus+e/RBPl7ZUxOwHNSodSpgTAZKA4k+KE0velIBozEvpQJe3JwiWSHwch/WIb3wBgFfLg8TJ4TZxPWhbutTz6zA5ZUrUqUG1LpX87G3ZVqBbY15nWUCPNE75+T38ThDKgYrcKntAamq9Gi/5OcnApBN8GiNlYKaj32lzP6swGxXjgeZAWOCNmV1x8yAswJy5dwDuyZU67k24XevP18jdHV8lLZWF3IR3g8JFqyFqoBhaH7TQdCPwWPKU2DYK5cITAIWzypgFKCTww06ffTWS7ODXylEvrlgAIsqI7Bqiml/94BbO/cpRLV+LW3CPTPdNLI9FoUmTw+0+2nAmkMt5LwvPnDbcivFJPWDFn/CH7oTetnxPAo9Ts7VAVPxJ6xdKbKCNuHdtSG6OFuPQqZZVQEvbU03vSiVKSaBSQavAsYBDDEJTLJuAAAA//8UYAWdAAAABklEQVQDAM+ogp5RJd1sAAAAAElFTkSuQmCC" alt="" width="44" height="56">
+      <div><b>DANI</b><span>10 años</span>
+      <p>Empiezas con +10 de REPUTACIÓN: el escaparate entra por los ojos.</p></div>
+    </li>
+    <li class="p">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAA4CAYAAACGwxqMAAACZklEQVR4AeyYO0gkQRRFnxtvvsEuuLDhLiwyaKAgBkZqoqmCoRgLChooiAYmxoaigoIfFNRQUVQMRPwhCIKCH4w1MBvnBgU1r/tVdXf1dPdoy1zq9+6rU7czv1GV/eXAlf5gnz/hudGOoq7jxaFiVOl9MA/ydQIljGZKvOnN9RVFFe8l3aHXBQLWDWnPRWD1WoxJQ5ru9AVu/NtWTBqS3ycx+AJzc5bWOXClv0b1JzzcUyi21L1UOihrfzCAhRdWf8LqRde3zwS1/C9QksKdkOLg4+dJmL8sK2sx4dHBAerv6kicE3c2/KkV7xWB/Rx9E7Mkya9e35N82NfrbHMP8OT8Sc3u6Q+br+LnYAALv8gDzAuytg4FPDPSS5JsD5N82Ld59XMRWC9S81+dYyRJ1Uij5MO+5PHbDwXMGzT9ayeI7wdZwwcFqdVrnID1RknNIwEjGSgKJHxQFC88kYBhTEuRgA8uN0lXGHjdh3kYL2pDAT+sjZEkNDNJ8mHf5ONnRuDv9z+JizdwXfP+WJt6GoFNxrTOYgHeW7iz8gepsTYpFRiB32ofiavk8fyau38TgExCjcdY2uD9sS5tiz8jsOhK8SA2YCRoUlxvjA04LiBbnxzYlpDruSdh9W/O7ZVlOjm7SEXqUYpFrTGWAaNg9bJA0NTyO6UpMHRNbhGYAKpUBqw271/XafroIZCWxuspjIL2BYPi0UdfYL0ga/OvB/zUukZh5PrFvkDCrhE5+vOEHQO02vOErRE5FuQJOwZotXsSnt8Yp/2d80zIj74M+PBqq2Z1uI2yJDDp4GXAOEBBlgQmXR8AAAD//67eaB0AAAAGSURBVAMATg0ono+bx9oAAAAASUVORK5CYII=" alt="" width="44" height="56">
+      <div><b>PEDRO</b><span>9 años</span>
+      <p>Empiezas con la gama GAMING abierta y 20 unidades dentro.</p></div>
+    </li>
+    <li class="p">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAA4CAYAAACGwxqMAAACmklEQVR4AeyYPWiUQRCG5wQjAYmHIIKNoCjiD4gWESPaXxqxsBAsbYRYKFhpZ2MqUUgj2IhaW9z1CichqJU/oGhhMEECcgYhYPPpK4zM7e7sfr/37Z138LK7s+/MPjubCySbaMg+Y+CqH2zc4Wg6PHfuRBKSBuvL03K0uPoj0Zo+kEhpBWSc/cf37UogXkuPOWePOZo+XqvAbODx09cehcRec/Tlmd7Q2gl88lArCSVWva8xOIGrhilSfzSAm1s/F2lCKbkaQyUd3rl9iqCi5PI3B9eqBJiLVzGOHvDj+as0SIVeZfQ6HLrxoPdHu8Oty7dIU6jTWh7ioVy57+xw7+ceaj+68/fLJs2DmOML7jvHCawldBZukCYth+NaHuLsSTNmAk5TsGqPCuw6eNvpS6TJ5ZcxLQ9x6QvNMwGbxWYOzxJkxtOskQel8UpPIWBZaFDzXMDoDJQHEnlQnlzk5AJGYl3KBdx90yapLPAyD/MsufBmAv7x/D5pQjGftDzEfXnmnhc4eU1kyixQdG3Wxxo1v31fJynEIC8wDHXo5vlp9dhSgNt3u+oBvJHGw17f6AVuHCMyRY7P7JUZApBP8DhSrfo4z+XjmBeYTTGNpQGjgz6VdenSgMsCCtWJFnjLxNF/7K8+rjR4ES0wA5qjBcz/5lx8+oTev+zWIoZEl2V3Ee8DBuyRU3sJuvZgjeoUGDYm1ghMAGX1AXNwefkLNXdvTqXOwtk/f+elV9q6YGAeOTqBpSG2+f8HfOF2m7Ko6ItZHZ6bXKf5/c0o9PDMQet+FrDlMAM1r4cf+N7GFF3/0ItCF5+9s95z+DtsXSmywLjDVT+I1eGlpUVaXV2JQq7L9wG/eNtpTP7aQTEJTBK8DxgbMMQkMEn9BgAA//9ka9ZNAAAABklEQVQDABsgYJ57fSj0AAAAAElFTkSuQmCC" alt="" width="44" height="56">
+      <div><b>SARA</b><span>None años</span>
+      <p>Empiezas con +12 de REPUTACIÓN y la tienda entra por los ojos desde el primer día.</p></div>
+    </li>
+    <li class="p">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAA4CAYAAACGwxqMAAAC2klEQVR4AeyYP2hTURTGT4Xi0FW0IgGJKIIFUTtFxEER/4AUB0FwsKKoxM2hi1KELjo5VFAQuhQ6qSCoIHUQNSBWRFQogkUNsdHFQYqEDrFf6Annvd5zcpNX8+LrK/1x7zvnfPd+70uzdBX9Zz+p4X/9gaUJpwmHElD/JPJnT1XjJOSz/qgark902MZpOLftcDVun5oHp+G4zVr3Ow3vyK21NG3paR6chtviqMVLkmX4yvFdFAdW+MlK2HrTuHrJSPht4SeNXhqIK0QayP4heHAZSEbCrjdD7fT1u6SBvoWmQ93ShXvJTDiXv0Ng+usv0kBfIpNBXdOhjr7k3Ni0lAf23gkXbp4hXwI3LD74ajG3KHEuquFNR4drqeLNWblu/0XS4Blt1XSouzTl+RJlt2yvAtlXDX9+cLWeqBTI/e6+IwRkjfd4UYZrcoUOyJrc93ZvoJlP77qArKuG5VAre3y0TCt6TdOSYSQDtEOtOnTAmrF6puGTIxMErAOWs4e7gHWmaVgTvvzwkCTanKsuddi7ZqxaU4Z/TI6ShnUJepoOdfR98TbM33ifFZcPjT0jBs8+upnZOQKY1/Ay/OZCnhj+5mPd07+ZNOSF4RloGT4Xa3Z9D4Hbg1ulPLD3MhxQiIdrg3sJHKj01FbsNeSMOKLprZfhSl+FGNcN+87309NbUyaYcWn5XKyufrjmZTgsivPZyzB/eaz1yeo5srC03PMJwjQ8fvkEAZ+DlmMGdwHrLNOwJYyr52W4VPpO7cAnhCWG+d+ck/cn6P3UixpDBzPUDvg+Ns5e+BlrwDAGMjs3Ehge/01xAg/l+SLBE4wyAcNcLH77QrRm4cmDezcOUTP4nlvzsGAh/Os0HB7qpOeVZ/jYyGNqhqif1gpIOGpEEfVpwhEDbChPE24YUcSBNOGIATaUL0n49avnVJ4tdgQu9wHDhY+Punq7M9RJwJM0HjCMBgY6CXiS/AUAAP//5wmaWgAAAAZJREFUAwDHaYyemn8kegAAAABJRU5ErkJggg==" alt="" width="44" height="56">
+      <div><b>EL PADRE</b><span>fuera de concurso</span>
+      <p>Sale con ventaja en todo. No cuenta para el marcador: está para ver qué falla.</p></div>
+    </li>
+  </ul>
+</div></section>
+
+<section id="placas"><div class="w">
+  <h2><i>04 //</i> LAS PLACAS</h2>
+  <p class="entradilla">Todo lo que hagas queda apuntado en el marcador. Hay tres ligas.</p>
+  <div class="ligas">
+    <div class="liga">
+      <h3>RÉCORDS · te los pueden quitar</h3>
+      <p>El que más años aguantó, el que dejó más dinero en caja, el más querido del pueblo.
+      Cada placa lleva un nombre y una fecha, y cambia de dueño en cuanto alguien la bate.</p>
+      <div class="ej"><span>EL REY DE LA COMARCA</span><span>EL COLCHÓN</span><span>LA VITRINA</span><span>EL MÁS QUERIDO</span></div>
+    </div>
+    <div class="liga">
+      <h3>ÚNICAS · el primero se la queda para siempre</h3>
+      <p>Estas no se las quita nadie. El primero que las consigue las tiene puestas al lado de su
+      nombre el resto de los tiempos, aunque después las repitan diez.</p>
+      <div class="ej"><span>EL ÚLTIMO QUE CIERRA</span><span>AÑO LIMPIO</span><span>NI UN DURO PRESTADO</span><span>LA REMONTADA</span><span>PILLADO</span></div>
+    </div>
+    <div class="liga leg">
+      <h3>LEGENDARIAS · nadie te va a decir cómo se consiguen</h3>
+      <p>Existen. Están en el marcador con su nombre y nada más. No salen en ninguna lista de
+      objetivos, no hay pistas y no se pueden buscar a propósito. Alguna puede que no la vea nunca
+      nadie. Cuando a alguien le sale una, lo va a contar.</p>
+      <div class="ej"><span>LA LANGOSTA DEL ALMACÉN</span><span>EL POLLO CUADRADO</span><span>EL DORADO</span><span class="q">? ? ?</span><span class="q">? ? ?</span><span class="q">? ? ?</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="de-donde"><div class="w">
+  <h2><i>05 //</i> DE DÓNDE SALE ESTO</h2>
+  <p>Lo hace un comerciante de Albox que lleva toda la vida detrás de un mostrador, en una empresa
+  familiar que abrió en <strong>1923</strong>. Juguetes, electrodomésticos, marcas, márgenes,
+  centrales de compra, proveedores que te fallan en campaña.</p>
+  <p>Por eso las decisiones del juego no están inventadas: el rappel que no llega, el stock que se
+  te queda muerto en el almacén, el cliente que quiere que le bajes el precio de la web.
+  <strong>Todo eso ha pasado de verdad.</strong></p>
+  <p class="entradilla" style="margin-top:26px">Ahora mismo lo están probando siete críos de la casa.
+  Lo que digan ellos es lo que decide qué se arregla primero.</p>
+</div></section>
+
+<section id="conseguirlo"><div class="w">
+  <h2><i>06 //</i> CONSEGUIRLO</h2>
+  <p class="entradilla">Se abre con doble clic. No hay que instalar nada más.</p>
+  <div class="bajar">
+    <div class="d"><h3>WINDOWS</h3>
+      <p>Descomprime la carpeta y doble clic en <b>Ultima Unidad.exe</b>.
+      Windows avisará la primera vez: «Más información» → «Ejecutar de todas formas».</p>
+      <span class="peso">143 MB · Windows 10 o superior</span></div>
+    <div class="d"><h3>MAC</h3>
+      <p>Descomprime y, la primera vez, clic derecho sobre la app → <b>Abrir</b>.
+      Después ya va con doble clic normal.</p>
+      <span class="peso">113 MB · Apple Silicon</span></div>
+    <div class="d no"><h3>IPHONE / IPAD</h3>
+      <p>Todavía no. Apple solo deja instalar aplicaciones firmadas y repartidas por su tienda,
+      así que un iPhone no puede abrir esto como un programa normal.</p>
+      <span class="peso">EN ELLO</span></div>
+  </div>
+  <div class="aviso"><b>Esto es una beta familiar.</b> Los enlaces de descarga todavía no son
+  públicos: si quieres probarlo, pídeselos a Antonio.</div>
+</div></section>
+
+<footer><div class="w">
+  <p>Última Unidad · un juego de <a href="https://hiperocio.com">Híper Ocio</a>, Albox (Almería)<br>
+  Desde 1923 detrás de un mostrador.</p>
+</div></footer>
+
+</body>
+</html>
